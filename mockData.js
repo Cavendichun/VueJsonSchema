@@ -8,7 +8,8 @@ export const schema = {
             "properties": {
                 "name": {
                     "type": "string",
-                    "title": "姓名"
+                    "title": "姓名",
+                    "default": "jh"
                 }
             }
         },
