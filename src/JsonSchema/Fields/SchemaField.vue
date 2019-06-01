@@ -1,8 +1,10 @@
 <template>
   <div>
-    <component :is="renderField"
-      v-bind="Object.assign(this.$props, this.$attrs)"
-    />
+    <component 
+      :is="renderField"
+      :schema="schema"
+      :formData="formData"
+      :__id="__id" />
   </div>
    
 </template>
@@ -13,7 +15,7 @@ import NumberField from "./NumberField";
 import ObjectField from "./ObjectField";
 import ArrayField from "./ArrayField";
 import BooleanField from "./BooleanField";
-import Vue from "vue";
+import _ from 'lodash'
 
 const fieldMap = {
         object: ObjectField,
@@ -29,6 +31,14 @@ export default {
     schema: {
       type: Object,
       require: true,
+    },
+    formData: {
+      type: Object,
+      default: ()=>{ {} }
+    },
+    __id: {
+      type: String,
+      require: true,
     }
   },
   data() {
@@ -37,7 +47,7 @@ export default {
     })
   },
   mounted() {
-    // console.log(this.$attrs);
+    // console.log(this.formData);
   }
 };
 </script>

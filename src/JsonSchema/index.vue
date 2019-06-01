@@ -3,6 +3,7 @@
         <SchemaField
             :schema="schema"
             :formData="formData"
+            :__id="`root`"
          />
     </div>
 </template>
@@ -26,6 +27,7 @@
             },
         },
         mounted() {
+            // console.log(this.formData);
         }
     }
 </script>

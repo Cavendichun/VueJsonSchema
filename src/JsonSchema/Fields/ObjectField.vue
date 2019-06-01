@@ -1,14 +1,18 @@
 <template>
   <div>
     <H3>{{schema.title}}</H3>
-    <component :is="SchemaField" 
-      v-bind="Object.assign()"
-    />
+    <template v-for="(item) in schema.properties">
+      <SchemaField
+        :key="`${__id}-${item}`"
+        :__id="`${__id}-${item}`"
+        :schema="item"
+        :formData="formData[item]||{}"
+      />
+    </template>
   </div>
 </template>
 
 <script>
-
 
 export default {
   name: 'objectField',
@@ -17,23 +21,26 @@ export default {
       type: Object,
       require: true,
     },
+    formData: {
+      type: Object,
+      default: () => { {} },
+    },
+    __id: {
+      type: String,
+      require: true,
+    }
   },
   data() {
     return {
-      SchemaField: null,
     }
+  },
+  components: {
+    SchemaField: resolve => require(['./SchemaField.vue'], resolve)
   },
 
   mounted() {
-    (() => {
-      return new Promise(  (resolve) => {
-        return require(['./SchemaField.vue'], resolve);
-      })
-    })().then(
-      (data) => {
-        this.SchemaField = data;
-      }
-    )
+  },
+  computed: {
   }
 }
 </script>

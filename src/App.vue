@@ -1,6 +1,8 @@
 <template>
   <div class="app">
-    <JsonSchema v-if="componentInit" :schema="schema" :formData="formData"/>
+    <JsonSchema v-if="componentInit" 
+      :schema="schema" 
+      :formData="formData"/>
     <div v-else>loading ...</div>
   </div>
 </template>
@@ -29,6 +31,7 @@ export default {
   },
   mounted() {
     let { defFormData } = transDefData(schema);
+    this.formData = _.merge(formData, defFormData);
     this.schema = schema;
     this.componentInit = true;
   },
