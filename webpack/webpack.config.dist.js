@@ -12,10 +12,7 @@ const { TITLE } = app_config;
 
 module.exports = {
     mode: 'production',
-    entry: {
-        bundle: path.resolve(__dirname, '../src/index.js'),
-        vendor: ['vue', 'ant-design-vue']
-    },
+    entry: path.resolve(__dirname, '../src/index.js'),
     resolve: {
         extensions: ['.js', '.vue'],
         mainFiles: ['index.js'],

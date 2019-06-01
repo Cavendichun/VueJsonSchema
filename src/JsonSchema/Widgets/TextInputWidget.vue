@@ -3,7 +3,7 @@
         :title="schema.title"
         :class="`text-input-widget`"
     >
-        <ant-input-component :value="formData" @change="onChange"/>
+        <ant-input-component v-model="value" />
     </form-item-component>
 </template>
 
@@ -20,14 +20,18 @@
             __id__: { type: String, required: true },
             onFormDataChange: { type: Function, required: true }
         },
+        data() {
+            return {
+                value: this.$props.formData
+            }
+        },
         components: {
             'ant-input-component': Input,
             'form-item-component': FormItem
         },
-        methods: {
-            onChange(e) {
-                this.onFormDataChange && 
-                    this.onFormDataChange(e.target.value == '' ? undefined : e.target.value, this.__id__);
+        watch: {
+            value(e) {
+                this.onFormDataChange && this.onFormDataChange(e == '' ? undefined : e, this.__id__);
             }
         }
     }

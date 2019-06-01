@@ -55,8 +55,11 @@
              * 根据路径和value，局部修改formData中某一块的数据
              */
             onFormDataChange(value, path) {
+                console.log(value, path);
                 let _path = path.split('.').splice(1).join('.');
-                _.set(this.$data.mainFormData, _path, value);
+                let _mainFormData = _.set(this.$data.mainFormData, _path, value);
+                this.$data.mainFormData = _mainFormData;
+                console.log(this.$data.mainFormData);
             }
         }
     }

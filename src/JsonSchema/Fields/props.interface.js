@@ -9,7 +9,7 @@ const fieldPropsInterFace = (type) => {
                 return {
                     object: {},
                     array: [],
-                    string: undefined,
+                    string: '',
                     number: undefined,
                     boolean: undefined
                 }[type]
