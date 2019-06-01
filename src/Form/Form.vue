@@ -1,16 +1,25 @@
 <template>
     <div class="json-form-container">
         <template v-if="componentInit">
-            <SchemaForm></SchemaForm>
+            <SchemaForm 
+                :schema="mainSchema" 
+                :formData="mainFormData" 
+                :uiSchema="mainUiSchema"
+                :onFormDataChange="onFormDataChange"
+            ></SchemaForm>
         </template>
     </div>
 </template>
 
 <script>
+    import SchemaForm from '../JsonSchema/JsonSchema';
+    import FormDataIniter from './formdata.init.js';
+    import Vue from 'vue';
+
     export default {
         name: 'Form',
         components: {
-            SchemaForm: r => require(['../JsonSchema/JsonSchema.vue'], r)
+            SchemaForm
         },
         props: {
             schema: { type: Object, required: true },
@@ -33,7 +42,7 @@
              * 根据props的formData和schema,获取一份表单的初始数据
              */
             getInitFormConfig() {
-                let _formData = new (require('./formdata.init.js').default)({
+                let _formData = new FormDataIniter({
                     schema: this.schema,
                     formData: this.formData
                 }).getInitFormData();
@@ -41,6 +50,13 @@
                     this.$data.mainFormData = _formData,
                         this.$data.mainUiSchema = {},
                             this.$data.componentInit = true;
+            },
+            /**
+             * 根据路径和value，局部修改formData中某一块的数据
+             */
+            onFormDataChange(value, path) {
+                let _path = path.split('.').splice(1).join('.');
+                _.set(this.$data.mainFormData, _path, value);
             }
         }
     }

@@ -4,6 +4,7 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const app_config = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../config.json')).toString()).DEV;
 const { LISTEN_PORT = 3000, BACKEND, TITLE } = app_config;
@@ -38,12 +39,12 @@ module.exports = {
             },
             {
                 test: /\.(css|scss)$/,
-                loader: ExtractTextPlugin.extract({ use: ["css-loader", "sass-loader"] })
+                    use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
             },
             {
                 test: /\.less$/,
-                loader: ExtractTextPlugin.extract({
                     use: [
+                        MiniCssExtractPlugin.loader,
                         { loader: 'css-loader' },
                         { loader: 'less-loader', options: { javascriptEnabled: true } },
                         // {
@@ -53,7 +54,6 @@ module.exports = {
                             // }
                         // }
                     ]
-                })
             },
             {
                 test: /\.(png|jpg|gif|woff)$/,
@@ -72,7 +72,7 @@ module.exports = {
     plugins: [
         new VueLoaderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
-        new ExtractTextPlugin('style.css'),
+        new MiniCssExtractPlugin('style.css'),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, '../index.html'),
             title: TITLE,

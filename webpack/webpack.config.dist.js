@@ -1,16 +1,21 @@
 const path = require('path');
 const fs = require('fs');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+// const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;   
 
 const app_config = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../config.json')).toString()).DIST;
 const { TITLE } = app_config;
 
 module.exports = {
     mode: 'production',
-    entry: path.resolve(__dirname, '../src/index.js'),
+    entry: {
+        bundle: path.resolve(__dirname, '../src/index.js'),
+        vendor: ['vue', 'ant-design-vue']
+    },
     resolve: {
         extensions: ['.js', '.vue'],
         mainFiles: ['index.js'],
@@ -31,26 +36,28 @@ module.exports = {
             },
             {
                 test: /\.(css|scss)$/,
-                loader: ExtractTextPlugin.extract({ use: ["css-loader", "sass-loader"] })
+                use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
             },
             {
                 test: /\.less$/,
-                loader: ExtractTextPlugin.extract({
                     use: [
+                        MiniCssExtractPlugin.loader,    
                         { loader: 'css-loader' },
                         { loader: 'less-loader', options: { javascriptEnabled: true } },
                         // {
-                        //     loader: 'style-resources-loader',
-                        //     options: {
-                        //         // patterns: path.resolve(__dirname, './src/Style/common.less')   //如果需要用一个入口less引入其他的less文件， 开启这一行
-                        //     }
+                            // loader: 'style-resources-loader',
+                            // options: {
+                            //     patterns: path.resolve(__dirname, './src/Style/antdbase.less')
+                            // }
                         // }
                     ]
-                })
             },
             {
-                test: /\.(png|jpg|gif)$/,
-                loader: 'url-loader?limit=1&name=images/[hash:8].[name].[ext]'
+                test: /\.(png|jpg|gif|woff)$/,
+                loader: 'url-loader',
+                options: {
+                    limit: 8192
+                }
             },
             {
                 test: /\.vue$/,
@@ -67,9 +74,10 @@ module.exports = {
             filename: 'index.html',
             inject: true
         }),
-        new ExtractTextPlugin('style-[hash].css'),
+        new MiniCssExtractPlugin('style-[hash].css'),
         new webpack.DefinePlugin({
             APP_MODE: JSON.stringify('PRODUCTION')
-        })
+        }),
+        new BundleAnalyzerPlugin()
     ]
 }

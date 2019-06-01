@@ -11,7 +11,7 @@
     export default {
         name: 'App',
         components: {
-            Form: r => require(['./Form/Form.vue'], r)
+            Form
         },
         data() {
             return {

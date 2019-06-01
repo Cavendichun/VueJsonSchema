@@ -5,6 +5,14 @@
     "plugins": [
         "transform-object-rest-spread",
         "transform-object-assign",
-        "transform-vue-jsx"
+        "transform-vue-jsx",
+        [
+            "import",
+            {
+                "libraryName": "ant-design-vue",
+                "libraryDirectory": "es",
+                "style": true
+            }
+        ]
     ]
 }
