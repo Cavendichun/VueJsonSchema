@@ -23,7 +23,7 @@ module.exports = {
     },
     devServer: {
         historyApiFallback: true,
-        inline: true,  //自动刷新
+        inline: false,  //自动刷新
         port: LISTEN_PORT,
         proxy: {
 

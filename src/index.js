@@ -6,5 +6,8 @@ new Vue({
     components: {
         App
     },
-    template: `<App></App>`
+    // template: `<App></App>`
+    render(h, ctx) {
+        return <App />
+    }
 })
