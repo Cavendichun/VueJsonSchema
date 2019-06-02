@@ -1,6 +1,9 @@
 <template>
     <div class="form-item">
-        <div class="title">{{title}} :</div>
+        <div class="title">
+            <span class="required-marker" v-if="required == true">*</span>
+            {{title}} :
+        </div>
         <div class="widget">
             <slot />
         </div>
@@ -11,7 +14,8 @@
     export default {
         name: 'FormItem',
         props: {
-            title: { type: String }
+            title: { type: String },
+            required: { type: Boolean }
         }
     }
 </script>
@@ -26,6 +30,11 @@
             line-height: 50px;
             text-align: right;
             padding-right: 50px;
+            .required-marker {
+                color: red;
+                font-size: 15px;
+                margin-right: 5px;
+            }
         }
         .widget {
             display: inline-block;

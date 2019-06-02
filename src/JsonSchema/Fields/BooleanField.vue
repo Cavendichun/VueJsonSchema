@@ -6,6 +6,7 @@
             :formData="formData"
             :uiSchema="uiSchema"
             :__id__="__id__"
+            :required="required"
             :onFormDataChange="onFormDataChange"
         />
     </div>

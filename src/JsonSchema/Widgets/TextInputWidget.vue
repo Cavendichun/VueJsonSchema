@@ -2,6 +2,7 @@
     <form-item-component
         :title="schema.title"
         :class="`text-input-widget`"
+        :required="required"
     >
         <ant-input-component v-model="value" />
     </form-item-component>
@@ -18,6 +19,7 @@
             formData: { type: String },
             uiSchema: { type: Object },
             __id__: { type: String, required: true },
+            required: { type: Boolean },
             onFormDataChange: { type: Function, required: true }
         },
         data() {

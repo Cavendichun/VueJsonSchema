@@ -9,6 +9,7 @@
                     :formData="formData[name]"
                     :uiSchema="uiSchema"
                     :__id__="`${__id__}.${name}`"
+                    :required="(schema.required || []).indexOf(name) != -1"
                     :onFormDataChange="onFormDataChange"
                 />
             </div>

@@ -6,6 +6,7 @@
             :formData="$attrs.formData"
             :uiSchema="$attrs.uiSchema"
             :__id__="$attrs.__id__"
+            :required="$attrs.required"
             :onFormDataChange="$attrs.onFormDataChange"
         ></component>
     </div>

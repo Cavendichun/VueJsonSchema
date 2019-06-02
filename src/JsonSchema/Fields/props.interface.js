@@ -15,6 +15,9 @@ const fieldPropsInterFace = (type) => {
                 }[type]
             }
         },
+        required: {
+            type: Boolean
+        },
         uiSchema: {
             type: Object
         },

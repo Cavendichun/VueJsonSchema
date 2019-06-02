@@ -5,6 +5,7 @@ export const schema = {
         "base_info": {
             "type": "object",
             "title": "基础信息",
+            "required": ["name"],
             "properties": {
                 "name": {
                     "type": "string",
@@ -31,6 +32,7 @@ export const schema = {
             // "moveable": false,
             "items": {
                 "type": "object",
+                "required": ["a"],
                 "properties": {
                     "a": {
                         "type": "string",
