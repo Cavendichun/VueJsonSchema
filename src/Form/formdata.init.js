@@ -26,12 +26,12 @@ class FormDataInit {
      * 此函数根据getDefaultFormDataBySchema中生成的defaultFormData，与传入的formData合并成一份初始化值
      * @return {object} 返回合并后的formData
     */
-   getInitFormData() {
-       const { schema, formData = {} } = this.props;
-       if (!schema) throw `props.schema must be included`;
-       let defaultFormData = this.getDefaultFormDataBySchema({ schema });
-       return _.merge(defaultFormData, formData);
-   }
+    getInitFormData() {
+        const { schema, formData = {} } = this.props;
+        if (!schema) throw `props.schema must be included`;
+        let defaultFormData = this.getDefaultFormDataBySchema({ schema });
+        return _.merge(defaultFormData, formData);
+    }
 
     /**
      * 此函数根据schema中的default值生成一份formData

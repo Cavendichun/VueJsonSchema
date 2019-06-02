@@ -3,19 +3,24 @@
         :title="schema.title"
         :class="`text-input-widget`"
     >
-        <ant-input-component v-model="value" />
+        <radio-group-component v-model="value">
+            <radio-component :value="true">是</radio-component>
+            <radio-component :value="false">否</radio-component>
+        </radio-group-component>
     </form-item-component>
 </template>
 
 <script>
-    import { Input } from 'ant-design-vue';
+    import { Radio } from 'ant-design-vue';
     import FormItem from '../FormItem';
 
+    const RadioGroup = Radio.Group;
+
     export default {
-        name: 'TextInputWidget',
+        name: 'BooleanRadioWidget',
         props: {
             schema: { type: Object, required: true },
-            formData: { type: String },
+            formData: { type: Boolean },
             uiSchema: { type: Object },
             __id__: { type: String, required: true },
             onFormDataChange: { type: Function, required: true }
@@ -26,23 +31,21 @@
             }
         },
         components: {
-            'ant-input-component': Input,
+            'radio-group-component': RadioGroup,
+            'radio-component': Radio,
             'form-item-component': FormItem
         },
         methods: {
-            onChange(e) {
-                let _value = e.target.value == undefined ? undefined : e.target.value;
-                this.onFormDataChange(_value, this.__id__)
-            }
+
         },
         watch: {
             value(e) {
-                this.onFormDataChange && this.onFormDataChange(e == '' ? undefined : e, this.__id__);
+                this.onFormDataChange && this.onFormDataChange(e, this.__id__);
             }
         }
     }
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 
 </style>

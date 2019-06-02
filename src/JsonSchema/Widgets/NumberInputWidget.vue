@@ -1,21 +1,24 @@
 <template>
     <form-item-component
         :title="schema.title"
-        :class="`text-input-widget`"
+        :class="`number-input-widget`"
     >
-        <ant-input-component v-model="value" />
+        <number-input-component
+            v-model="value"
+        />
     </form-item-component>
 </template>
 
 <script>
-    import { Input } from 'ant-design-vue';
+    import { Input } from 'element-ui';
+    import { InputNumber } from 'ant-design-vue';
     import FormItem from '../FormItem';
 
     export default {
-        name: 'TextInputWidget',
+        name: 'NumberInputWidget',
         props: {
             schema: { type: Object, required: true },
-            formData: { type: String },
+            formData: { type: Number },
             uiSchema: { type: Object },
             __id__: { type: String, required: true },
             onFormDataChange: { type: Function, required: true }
@@ -26,23 +29,25 @@
             }
         },
         components: {
-            'ant-input-component': Input,
+            'number-input-component': InputNumber,
             'form-item-component': FormItem
         },
         methods: {
-            onChange(e) {
-                let _value = e.target.value == undefined ? undefined : e.target.value;
-                this.onFormDataChange(_value, this.__id__)
-            }
+
         },
         watch: {
             value(e) {
-                this.onFormDataChange && this.onFormDataChange(e == '' ? undefined : e, this.__id__);
+                if (isNaN(e)) { return false }
+                this.onFormDataChange && this.onFormDataChange(e == '' ? undefined : Number(e), this.__id__);
             }
         }
     }
 </script>
 
-<style lang="less" scoped>
-
+<style lang="scss" scoped>
+    .number-input-widget {
+        .ant-input-number {
+            width: 100%;
+        }
+    }
 </style>

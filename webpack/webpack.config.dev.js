@@ -39,24 +39,39 @@ module.exports = {
             },
             {
                 test: /\.(css|scss)$/,
-                    use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    "css-loader",
+                    "sass-loader"
+                ]
             },
             {
                 test: /\.less$/,
                     use: [
                         MiniCssExtractPlugin.loader,
                         { loader: 'css-loader' },
-                        { loader: 'less-loader', options: { javascriptEnabled: true } },
-                        // {
-                            // loader: 'style-resources-loader',
-                            // options: {
-                            //     patterns: path.resolve(__dirname, './src/Style/antdbase.less')
-                            // }
-                        // }
+                        {
+                            loader: 'less-loader',
+                            options: {
+                                javascriptEnabled: true,
+                                modifyVars: {
+                                    'primary-color': 'purple',
+                                    'border-radius-base': '0',
+                                    'box-shadow-base': '0 2px 8px rgba(0, 0, 0, .15)',
+                                    'border-base': '1px solid #f0f2f5'
+                                }
+                            }
+                        },
+                        {
+                            loader: 'style-resources-loader',
+                            options: {
+                                patterns: path.resolve(__dirname, './src/Style/ant-base.less')
+                            }
+                        }
                     ]
             },
             {
-                test: /\.(png|jpg|gif|woff)$/,
+                test: /\.(png|jpg|gif|woff|ttf)$/,
                 loader: 'url-loader',
                 options: {
                     limit: 8192

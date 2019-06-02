@@ -22,12 +22,6 @@
 
     export default {
         name: 'ObjectField',
-        // props: {
-        //     schema: { type: Object, required: true },
-        //     formData: { type: Object, default: () => { return {} } },
-        //     uiSchema: { type: Object, default: () => { return {} } },
-        //     __id__: { type: String, required: true }
-        // },
         props: fieldPropsInterFace('object'),
         components: {
             SchemaField: r => require(['./SchemaField.vue'], r)

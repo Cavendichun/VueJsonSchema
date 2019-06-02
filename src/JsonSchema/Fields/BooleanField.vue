@@ -1,5 +1,5 @@
 <template>
-    <div class="string-field">
+    <div class="boolean-field">
         <component
             :is="renderWidget"
             :schema="schema"
@@ -16,8 +16,8 @@
     import fieldPropsInterFace from './props.interface';
 
     export default {
-        name: 'StringField',
-        props: fieldPropsInterFace('string'),
+        name: 'BooleanField',
+        props: fieldPropsInterFace('boolean'),
         data() {
             return {
                 renderWidget: getWidgetBySchema(this.schema)

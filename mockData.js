@@ -12,32 +12,38 @@ export const schema = {
                     "default": "Cavendichun"
                 },
                 "age": {
-                    "type": "string",
-                    "title": "年龄"
+                    "type": "number",
+                    "title": "年龄",
+                    // "default": 2
+                },
+                "nb": {
+                    "type": "boolean",
+                    "title": "是吗",
+                    "default": false
                 }
             }
         },
-        // "test_array": {
-        //     "type": "array",
-        //     "title": "测试array",
-        //     "minItems": 1,
-        //     "maxItems": 4,
-        //     // "moveable": false,
-        //     "items": {
-        //         "type": "object",
-        //         "properties": {
-        //             "a": {
-        //                 "type": "string",
-        //                 "title": "a",
-        //                 "default": "111"
-        //             },
-        //             "b": {
-        //                 "type": "string",
-        //                 "title": "b"
-        //             }
-        //         }
-        //     }
-        // }
+        "test_array": {
+            "type": "array",
+            "title": "测试array",
+            "minItems": 2,
+            "maxItems": 4,
+            // "moveable": false,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "a": {
+                        "type": "string",
+                        "title": "a",
+                        "default": "111"
+                    },
+                    "b": {
+                        "type": "string",
+                        "title": "b"
+                    }
+                }
+            }
+        }
     }
 }
 

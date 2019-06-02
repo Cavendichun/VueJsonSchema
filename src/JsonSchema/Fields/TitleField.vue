@@ -21,7 +21,7 @@
         font-weight: bold;
         padding-left: 30px;
         color: #868686;
-        border-bottom: 1px solid #f0f2f5;
+        border-bottom: @border-base;
         margin-bottom: 10px;
     }
 </style>

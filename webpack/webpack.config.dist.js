@@ -5,7 +5,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;   
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const app_config = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../config.json')).toString()).DIST;
 const { TITLE } = app_config;
@@ -38,7 +38,7 @@ module.exports = {
             {
                 test: /\.less$/,
                     use: [
-                        MiniCssExtractPlugin.loader,    
+                        MiniCssExtractPlugin.loader,
                         { loader: 'css-loader' },
                         { loader: 'less-loader', options: { javascriptEnabled: true } },
                         // {
@@ -50,10 +50,11 @@ module.exports = {
                     ]
             },
             {
-                test: /\.(png|jpg|gif|woff)$/,
+                test: /\.(png|jpg|gif|woff|ttf)$/,
                 loader: 'url-loader',
                 options: {
-                    limit: 8192
+                    limit: 8192,
+                    name: 'static/[name].[ext]'
                 }
             },
             {
