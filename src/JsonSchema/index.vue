@@ -1,8 +1,8 @@
 <template>
     <div id="jsonSchema">
         <SchemaField
-            :schema="schema"
-            :formData="formData"
+            :schema="$attrs.schema"
+            :formData="$attrs.formData"
             :__id="`root`"
          />
     </div>
@@ -16,18 +16,7 @@
         components: {
             SchemaField,
         },
-        props: {
-            schema: {
-                type: Object,
-                required: true,
-            },
-            formData: {
-                type: Object,
-                default: () => { return {} } ,
-            },
-        },
         mounted() {
-            // console.log(this.formData);
         }
     }
 </script>

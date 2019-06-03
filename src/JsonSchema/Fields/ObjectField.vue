@@ -1,19 +1,16 @@
 <template>
   <div>
-    <H3>{{schema.title}}</H3>
-    <template v-for="(item) in schema.properties">
+    <H3>ObjectField{{schema.title}}</H3>
       <SchemaField
-        :key="`${__id}-${item}`"
-        :__id="`${__id}-${item}`"
-        :schema="item"
-        :formData="formData[item]||{}"
-      />
-    </template>
+        v-for="(value, name) in schema.properties"
+        :key="`${__id}-${name}`"
+        :__id="`${__id}-${name}`"
+        :schema="value"
+        :formData="formData[name]" />
   </div>
 </template>
 
 <script>
-
 export default {
   name: 'objectField',
   props: {
@@ -23,7 +20,7 @@ export default {
     },
     formData: {
       type: Object,
-      default: () => { {} },
+      default: () => { return {} },
     },
     __id: {
       type: String,
@@ -39,6 +36,8 @@ export default {
   },
 
   mounted() {
+    console.count("objectField");
+    console.log(this.formData);
   },
   computed: {
   }

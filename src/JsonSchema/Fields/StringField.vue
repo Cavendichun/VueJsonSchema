@@ -1,5 +1,6 @@
 <template>
   <div>
+    stringField: 
     {{schema.title}}
   </div>
 </template>
@@ -12,14 +13,18 @@ export default {
       type: Object,
       require: true,
     },
-    // formData,
-    // __id: {
-    //   type: String,
-    //   require: true,
-    // }
+    formData: {
+      type: String,
+      default: ()=>{ return `` },
+    },
+    __id: {
+      type: String,
+      require: true,
+    }
   },
   mounted() {
-    // console.log(this.formData);
+    console.count(`stringField`);
+    console.log(this.formData);
   }
 }
 </script>

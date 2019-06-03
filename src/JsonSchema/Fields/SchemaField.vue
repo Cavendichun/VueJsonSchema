@@ -15,7 +15,7 @@ import NumberField from "./NumberField";
 import ObjectField from "./ObjectField";
 import ArrayField from "./ArrayField";
 import BooleanField from "./BooleanField";
-import _ from 'lodash'
+import _ from 'lodash';
 
 const fieldMap = {
         object: ObjectField,
@@ -33,8 +33,7 @@ export default {
       require: true,
     },
     formData: {
-      type: Object,
-      default: ()=>{ {} }
+      default: ()=>{ return {} },
     },
     __id: {
       type: String,
@@ -43,11 +42,13 @@ export default {
   },
   data() {
     return ({
-      renderField: fieldMap[this.schema.type],
+      renderField: null,
     })
   },
   mounted() {
-    // console.log(this.formData);
+    this.renderField = fieldMap[this.schema.type];
+    console.count(`schemaField`)
+    console.log(this.formData);
   }
 };
 </script>
