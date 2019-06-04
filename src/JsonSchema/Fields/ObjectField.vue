@@ -1,46 +1,24 @@
 <template>
   <div>
-    <H3>ObjectField{{schema.title}}</H3>
+    <H3>ObjectField{{jsonSchema.title}}</H3>
       <SchemaField
-        v-for="(value, name) in schema.properties"
+        v-for="(value, name) in jsonSchema.properties"
         :key="`${__id}-${name}`"
         :__id="`${__id}-${name}`"
-        :schema="value"
-        :formData="formData[name]" />
+        :jsonSchema="value"
+        :dataSchema="dataSchema[name]" />
   </div>
 </template>
 
 <script>
+import { props } from "./common";
+
 export default {
-  name: 'objectField',
-  props: {
-    schema: {
-      type: Object,
-      require: true,
-    },
-    formData: {
-      type: Object,
-      default: () => { return {} },
-    },
-    __id: {
-      type: String,
-      require: true,
-    }
-  },
-  data() {
-    return {
-    }
-  },
+  name: 'object-field',
+  props: { ...props(Object) },
   components: {
     SchemaField: resolve => require(['./SchemaField.vue'], resolve)
   },
-
-  mounted() {
-    console.count("objectField");
-    console.log(this.formData);
-  },
-  computed: {
-  }
 }
 </script>
 

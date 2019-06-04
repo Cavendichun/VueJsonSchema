@@ -1,0 +1,39 @@
+<template>
+  <JsonSchema 
+    :jsonSchema="jsonSchema"
+    :dataSchema="newDataSchema" />
+</template>
+
+<script>
+  import JsonSchema from '../JsonSchema/index'
+  import SchemaDataParser from './DataSchema.init';
+  import _ from 'lodash';
+
+  export default {
+    name: 'my-form',
+    props: {
+      jsonSchema: {
+        type: Object,
+        require: true,
+      },
+      dataSchema: {
+        type: Object,
+        default: ()=>{ return {} },
+      }
+    },
+    components: {
+      JsonSchema,
+    },
+    computed: {
+      newDataSchema: function () {
+        const _dataSchema = SchemaDataParser(this.jsonSchema);
+        return _.merge({ ...this.dataSchema }, _dataSchema);
+      }
+    },
+
+  }
+</script>
+
+<style lang="scss" scoped>
+
+</style>

@@ -1,31 +1,16 @@
 <template>
   <div>
     stringField: 
-    {{schema.title}}
+    {{jsonSchema.title}}
   </div>
 </template>
 
 <script>
+import { props } from "./common";
+
 export default {
-  name: 'stringField',
-  props: {
-    schema: {
-      type: Object,
-      require: true,
-    },
-    formData: {
-      type: String,
-      default: ()=>{ return `` },
-    },
-    __id: {
-      type: String,
-      require: true,
-    }
-  },
-  mounted() {
-    console.count(`stringField`);
-    console.log(this.formData);
-  }
+  name: 'string-field',
+  props: { ...props(String) },
 }
 </script>
 

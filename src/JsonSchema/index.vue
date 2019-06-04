@@ -1,8 +1,7 @@
 <template>
     <div id="jsonSchema">
         <SchemaField
-            :schema="$attrs.schema"
-            :formData="$attrs.formData"
+            v-bind="$attrs"
             :__id="`root`"
          />
     </div>
@@ -12,12 +11,10 @@
     import SchemaField from './Fields/SchemaField'
 
     export default {
-        name: 'jsonSchema',
+        name: 'json-schema',
         components: {
             SchemaField,
         },
-        mounted() {
-        }
     }
 </script>
 

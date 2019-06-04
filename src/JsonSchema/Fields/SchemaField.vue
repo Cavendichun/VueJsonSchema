@@ -1,12 +1,10 @@
 <template>
-  <div>
-    <component 
-      :is="renderField"
-      :schema="schema"
-      :formData="formData"
-      :__id="__id" />
-  </div>
-   
+  <component
+    :is="renderField"
+    :jsonSchema="jsonSchema"
+    :dataSchema="$attrs.dataSchema"
+    :__id="__id"
+  />
 </template>
 
 <script>
@@ -15,40 +13,30 @@ import NumberField from "./NumberField";
 import ObjectField from "./ObjectField";
 import ArrayField from "./ArrayField";
 import BooleanField from "./BooleanField";
-import _ from 'lodash';
-
-const fieldMap = {
-        object: ObjectField,
-        string: StringField,
-        number: NumberField,
-        array: ArrayField,
-        boolean: BooleanField
-      }
 
 export default {
-  name: "schemaField",
+  name: "schema-field",
   props: {
-    schema: {
+    jsonSchema: {
       type: Object,
-      require: true,
-    },
-    formData: {
-      default: ()=>{ return {} },
+      require: true
     },
     __id: {
       type: String,
-      require: true,
+      require: true
     }
   },
-  data() {
-    return ({
-      renderField: null,
-    })
-  },
-  mounted() {
-    this.renderField = fieldMap[this.schema.type];
-    console.count(`schemaField`)
-    console.log(this.formData);
+  computed: {
+    renderField: function() {
+      const Field = {
+                object: ObjectField,
+                string: StringField,
+                number: NumberField,
+                array: ArrayField,
+                boolean: BooleanField
+            }[this.jsonSchema.type];
+      return Field;
+    }
   }
 };
 </script>

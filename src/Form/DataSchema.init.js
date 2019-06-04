@@ -1,10 +1,9 @@
-export const transDefData = (schema)=>{
+export default function SchemaDefData (schema){
     if(schema.type !== 'object')
         throw "JsonSchema root type must be object";
-    return {defFormData: objectTranser(schema) || {}, dependencyMap};
+    return objectTranser(schema);
 }
 
-let dependencyMap = {};
 
 export const objectTranser = (schema, beforePath)=> {
     let formData = {};

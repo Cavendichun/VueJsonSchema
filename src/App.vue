@@ -1,44 +1,24 @@
 <template>
-  <div class="app">
-    <JsonSchema v-if="componentInit" 
-      :schema="schema" 
-      :formData="formData"/>
-    <div v-else>loading ...</div>
-  </div>
+    <Form 
+      :jsonSchema="jsonSchema"
+      :dataScehma="dataSchema" />
 </template>
 
 <script>
-import { schema, formData } from "../mockData";
-import { transDefData } from "./Form/formData.init";
-import formateCheck from "./Form/formateCheck";
-import JsonSchema from "./JsonSchema/index.vue";
-import _ from "lodash";
+import { jsonSchema, dataSchema } from "../mockData";
+import Form from './Form/Form';
 
 export default {
-  name: "App",
-  components: {
-    // Form: r => require(['./Form/Form.vue'], r)
-  },
+  name: 'app',
   data() {
     return {
-      componentInit: false,
-      schema: null,
-      formData: null
-    };
+      jsonSchema,
+      dataSchema,
+    }
   },
   components: {
-    JsonSchema
-  },
-  mounted() {
-    let { defFormData } = transDefData(schema);
-    this.formData = _.merge(formData, defFormData);
-    this.schema = schema;
-    this.componentInit = true;
-  },
-  computed: {},
-  methods: {}
-};
-</script>
+    Form,
+  }
+}
 
-<style lang="less">
-</style>
+</script>

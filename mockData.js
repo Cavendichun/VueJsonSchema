@@ -1,4 +1,4 @@
-export const schema = {
+export const jsonSchema = {
     "type": "object",
     "title": "测试表单",
     "properties": {
@@ -37,7 +37,7 @@ export const schema = {
     }
 }
 
-export const formData = {}
+export const dataSchema = {}
 
 // export const schema = {
 //     "type": "object",
