@@ -17,10 +17,6 @@ import Input from '../../wigets/textInputWiget';
 export default {
   name: 'string-field',
   props: { ...props(String) },
-  data() {
-    return {
-    }
-  },
   components: {
     TitleField,
     Input,

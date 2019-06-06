@@ -44,6 +44,27 @@ export const jsonSchema = {
     "title": "企业信息",
     "required": ["invitationCode"],
     "properties": {
+        "test_array": {
+            "type": "array",
+            "title": "测试array",
+            "minItems": 1,
+            "maxItems": 4,
+            "moveable": false,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "a": {
+                        "type": "string",
+                        "title": "a",
+                        "default": "111"
+                    },
+                    "b": {
+                        "type": "string",
+                        "title": "b"
+                    }
+                }
+            }
+        },
         "invitationCode": {
             "type": "number",
             "title": "我的邀请码"

@@ -1,7 +1,7 @@
 <template>
   <el-input
     v-model="data" 
-    type="`number`"
+    type="number"
     clearable />
 </template>
 
@@ -28,16 +28,16 @@ export default {
   components: {
     'el-input': Input,
   },
-  // watch: {
-  //   data: function(value) {
-  //     this.handleChange(value);
-  //   }
-  // },
-  // methods: {
-  //   handleChange: function(value) {
-  //     this.onChange({value, __id: this.__id});
-  //   }
-  // }
+  watch: {
+    data: function(value) {
+      this.handleChange(value);
+    }
+  },
+  methods: {
+    handleChange: function(value) {
+      this.onChange({value, __id: this.__id});
+    }
+  }
 };
 </script>
 
