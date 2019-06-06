@@ -1,7 +1,8 @@
 <template>
   <JsonSchema 
     :jsonSchema="jsonSchema"
-    :dataSchema="newDataSchema" />
+    :dataSchema="newDataSchema"
+    :onChange="handleDataSchemaChange" />
 </template>
 
 <script>
@@ -30,7 +31,15 @@
         return _.merge({ ...this.dataSchema }, _dataSchema);
       }
     },
+    methods: {
+      handleDataSchemaChange({value, __id}) {
+        const {dataSchema} = this;
+        let path = __id.split('-').slice(1);
+        _.set(dataSchema, path, value);
 
+        this.dataSchema = dataSchema;
+      },
+    }
   }
 </script>
 

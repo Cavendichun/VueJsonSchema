@@ -11,7 +11,7 @@ const { LISTEN_PORT = 3000, BACKEND, TITLE } = app_config;
 module.exports = {
     mode: 'development',
     entry: path.resolve(__dirname, '../src/index.js'),
-    devtool: 'cheap-module-eval-source-map',
+    devtool: 'source-map',
     resolve: {
         extensions: ['.js', '.vue'],
         mainFiles: [

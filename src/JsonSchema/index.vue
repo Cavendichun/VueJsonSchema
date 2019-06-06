@@ -1,7 +1,9 @@
 <template>
     <div id="jsonSchema">
         <SchemaField
-            v-bind="$attrs"
+            :jsonSchema="jsonSchema"
+            :dataSchema="dataSchema"
+            :onChange="onChange" 
             :__id="`root`"
          />
     </div>
@@ -15,6 +17,7 @@
         components: {
             SchemaField,
         },
+        props: ["jsonSchema", "dataSchema", "onChange", "__id"]
     }
 </script>
 

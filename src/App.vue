@@ -1,7 +1,7 @@
 <template>
     <Form 
       :jsonSchema="jsonSchema"
-      :dataScehma="dataSchema" />
+      :dataSchema="dataSchema" />
 </template>
 
 <script>
@@ -18,6 +18,9 @@ export default {
   },
   components: {
     Form,
+  },
+  created() {
+    // console.log(typeof this.dataSchema);
   }
 }
 

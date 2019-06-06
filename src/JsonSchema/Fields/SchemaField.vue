@@ -3,6 +3,7 @@
     :is="renderField"
     :jsonSchema="jsonSchema"
     :dataSchema="$attrs.dataSchema"
+    :onChange="onChange"
     :__id="__id"
   />
 </template>
@@ -24,6 +25,10 @@ export default {
     __id: {
       type: String,
       require: true
+    },
+    onChange: {
+      type: Function,
+      required: true,
     }
   },
   computed: {

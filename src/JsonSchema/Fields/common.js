@@ -6,10 +6,14 @@ export const props = (type) => {
     },
     dataSchema: {
       type: type,
-      default: () => { return {} },
+      default: () => { return (new type) },
     },
     __id: {
       type: String,
+      require: true,
+    },
+    onChange: {
+      type: Function,
       require: true,
     }
   }
