@@ -31,6 +31,9 @@
         return _.merge({ ...this.dataSchema }, _dataSchema);
       }
     },
+    created() {
+      // console.log(this.$props);
+    },
     methods: {
       handleDataSchemaChange({value, __id}) {
         const {dataSchema} = this;

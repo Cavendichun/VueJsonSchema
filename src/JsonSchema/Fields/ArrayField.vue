@@ -1,29 +1,12 @@
 <template>
   <div class="array-items">
-    <!-- <SchemaField
+    <SchemaField
         v-for="(value, index) in dataSchema"
         :key="`${__id}-${index}`"
         :__id="`${__id}-${index}`"
-        :jsonSchema="jsonSchema.item"
+        :jsonSchema="jsonSchema.items"
         :dataSchema="value"
-        :onChange="handleChange.bind(index)" /> -->
-    <!-- <div class="item-handle">
-      <template v-if="jsonSchema.moveAble">
-        <span class="up"
-          @click="moveItem({derect: `up`, index})">
-          up
-        </span>
-        <span class="down"
-          @click="moveItem({derect: `up`, index})"> >
-          down
-        </span>
-      </template>
-      <span class="delete"
-        @click="deleteItem(index)" >
-        del
-      </span>
-    </div>
-    </template> -->
+        :onChange="handleChange.bind(index)" /> 
   </div>
 </template>
 
@@ -37,14 +20,16 @@ export default {
   components: {
     SchemaField: resolve => require(['./SchemaField.vue'], resolve),
   },
+  created() {
+  },
   methods: {
     handleChange( index ) {
       console.log(index);
-    }
+    },
+    
   },
-  created() {
-    console.log(this.$props);
-  }
+  computed: {
+  },
 };
 </script>
 

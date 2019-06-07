@@ -47,22 +47,12 @@ export const jsonSchema = {
         "test_array": {
             "type": "array",
             "title": "测试array",
-            "minItems": 1,
-            "maxItems": 4,
+            "minItems": 4,
+            "maxItems": 6,
             "moveable": false,
             "items": {
-                "type": "object",
-                "properties": {
-                    "a": {
-                        "type": "string",
-                        "title": "a",
-                        "default": "111"
-                    },
-                    "b": {
-                        "type": "string",
-                        "title": "b"
-                    }
-                }
+                "type": "string",
+                "title": "array",
             }
         },
         "invitationCode": {
